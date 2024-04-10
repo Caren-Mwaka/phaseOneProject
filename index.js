@@ -1,71 +1,154 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const filmsBtn = document.getElementById('filmsBtn');
-    const peopleBtn = document.getElementById('peopleBtn');
-    const vehiclesBtn = document.getElementById('vehiclesBtn');
-    const planetsBtn = document.getElementById('planetsBtn');
-    const speciesBtn = document.getElementById('speciesBtn');
-    const mainContent = document.getElementById('mainContent');
+document.addEventListener("DOMContentLoaded", () => {
+  const filmsBtn = document.getElementById("filmsBtn");
+  const peopleBtn = document.getElementById("peopleBtn");
+  const vehiclesBtn = document.getElementById("vehiclesBtn");
+  const planetsBtn = document.getElementById("planetsBtn");
+  const speciesBtn = document.getElementById("speciesBtn");
+  const mainContent = document.getElementById("mainContent");
 
-    function fetchData(value) {
-        return fetch(`https://swapi.dev/api/${value}/`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Failed to load details');
-                }
-                return response.json();
-            })
-            .catch((error) => console.error("Error:", error));
-    }
+  function fetchData(value) {
+    return fetch(`https://swapi.dev/api/${value}/`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to load details");
+        }
+        return response.json();
+      })
+      .catch((error) => console.error("Error:", error));
+  }
 
-    const displayData = (value) => {
-        let content = '';
-        mainContent.innerHTML = ''; 
-        fetchData(value)
-            .then((data) => {
-                if (Array.isArray(data.results)) {
-                    data.results.forEach(item => {
-                        switch (value) {
-                            case 'films':
-                                content += `
-                                    <div class="card">
-                                        <h4>${item.title}</h4>
-                                        <div class="card-content">  
-                                            <span class="producer">Producer</span>: ${item.producer}<br>
-                                            <span class="director">Director</span>: ${item.director}<br>
-                                            <span class="release">Release date</span>: ${item.release_date}<br>
-                                            <p class="opening">${item.opening_crawl}</p>
-                                        </div>
-                                    </div>`;
-                                break;
+  const displayData = (value) => {
+    let content = "";
+    mainContent.innerHTML = "";
+    fetchData(value)
+    //The fetchData is called inside the displayData function to fetch the data and then display it based on the value. 
+    //For example if the value === films , the data that will be displayed will be that of case 'films'
+      .then((data) => {
+        if (Array.isArray(data.results)) {
+          data.results.forEach((item) => {
 
-                            case 'people':
-                                content += `
-                                    <div class="card">
-                                        <h4>${item.name}</h4>
-                                        <div class="card-content">  
-                                            <span class="gender">Gender</span>: ${item.gender}<br>
-                                            <span class="birthYear">Birth Year</span>: ${item.birth_year}<br>
-                                            <span class="height">Height</span>: ${item.height}<br>
-                                        </div>
-                                    </div>`;
-                                break;
+            //displaying films data
+            switch (value) {
+              case "films":
+                content += `
+                    <div class="card">
+                        <h4>${item.title}</h4>
+                        <div class="card-content"> 
+                        <span class="episodeId">Episode ID</span>: ${item.episode_id}<br>
+                        <span class="producer">Producer</span>: ${item.producer}<br>
+                        <span class="director">Director</span>: ${item.director}<br>
+                        <span class="releaseDate">Release Date</span>: ${item.release_date}<br>
+                        <br>
+                        <span class="openingCrawl">Opening Crawl</span>: ${item.opening_crawl}<br>
+                        </div>
+                    </div>`;
+                break;
+            //displaying people data
+              case "people":
+                content += `
+                    <div class="card">
+                        <h4>${item.name}</h4>
+                        <div class="card-content">  
+                            <span class="height">Height</span>: ${item.height}<br>
+                            <span class="mass">Mass</span>: ${item.mass}<br>
+                            <span class="hairColor">Hair Color</span>: ${item.hair_color}<br>
+                            <span class="skinColor">Skin Color</span>: ${item.skin_color}<br>
+                            <span class="eyeColor">Eye Color</span>: ${item.eye_color}<br>
+                            <span class="birthYear">Birth Year</span>: ${item.birth_year}<br>
+                            <span class="gender">Gender</span>: ${item.gender}<br>
+                        </div>
+                    </div>`;
+                break;
+            //displaying vehicles data
+                case 'vehicles':
+                    content += `
+                        <div class="card">
+                            <h4>${item.name}</h4>
+                            <div class="card-content">  
+                            <span class="model">Model</span>: ${item.model}<br>
+                            <span class="manufacturer">Manufacturer</span>: ${item.manufacturer}<br>
+                            <span class="costInCredits">Cost in Credits</span>: ${item.cost_in_credits}<br>
+                            <span class="length">Length</span>: ${item.length}<br>
+                            <span class="maxAtmospheringSpeed">Max Atmosphering Speed</span>: ${item.max_atmosphering_speed}<br>
+                            <span class="crew">Crew</span>: ${item.crew}<br>
+                            <span class="passengers">Passengers</span>: ${item.passengers}<br>
+                            <span class="cargoCapacity">Cargo Capacity</span>: ${item.cargo_capacity}<br>
+                            <span class="consumables">Consumables</span>: ${item.consumables}<br>
+                            <span class="vehicleClass">Vehicle Class</span>: ${item.vehicle_class}<br>
+                            </div>
+                        </div>`;
+                    break;
+            //displaying planets data
+                case 'planets':
+                    content += `
+                        <div class="card">
+                            <h4>${item.name}</h4>
+                            <div class="card-content">  
+                            <span class="rotationPeriod">Rotation Period</span>: ${item.rotation_period}<br>
+                            <span class="orbitalPeriod">Orbital Period</span>: ${item.orbital_period}<br>
+                            <span class="diameter">Diameter</span>: ${item.diameter}<br>
+                            <span class="climate">Climate</span>: ${item.climate}<br>
+                            <span class="gravity">Gravity</span>: ${item.gravity}<br>
+                            <span class="terrain">Terrain</span>: ${item.terrain}<br>
+                            <span class="surfaceWater">Surface Water</span>: ${item.surface_water}<br>
+                            <span class="population">Population</span>: ${item.population}<br>
+                            </div>
+                        </div>`;
+                    break;
+            //displaying species data
+                case 'species':
+                    content += `
+                        <div class="card">
+                            <h4>${item.name}</h4>
+                            <div class="card-content">  
+                            <span class="classification">Classification</span>: ${item.classification}<br>
+                            <span class="designation">Designation</span>: ${item.designation}<br>
+                            <span class="averageHeight">Average Height</span>: ${item.average_height}<br>
+                            <span class="skinColors">Skin Colors</span>: ${item.skin_colors}<br>
+                            <span class="hairColors">Hair Colors</span>: ${item.hair_colors}<br>
+                            <span class="eyeColors">Eye Colors</span>: ${item.eye_colors}<br>
+                            <span class="averageLifespan">Average Lifespan</span>: ${item.average_lifespan}<br>
+                            <span class="language">Language</span>: ${item.language}<br>
+                            </div>
+                        </div>`;
+                    break;
 
-                            default:
-                                break;
-                        }
-                    });
+                default:
+                    break;
+            }
+          });
 
-                    mainContent.insertAdjacentHTML("afterbegin", content);
-                }
-            })
-            .catch((error) => {
-                console.error('Display data error:', error);
-            });
-    };
+          mainContent.insertAdjacentHTML("afterbegin", content);
+        }
+      })
+      .catch((error) => {
+        console.error("Display data error:", error);
+      });
+  };
 
-    filmsBtn.addEventListener('click', () => displayData('films'));
-    peopleBtn.addEventListener('click', () => displayData('people'));
-    vehiclesBtn.addEventListener('click', () => displayData('vehicles'));
-    planetsBtn.addEventListener('click', () => displayData('planets'));
-    speciesBtn.addEventListener('click', () => displayData('species'));
+  filmsBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    displayData("films");
+  });
+  
+  peopleBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    displayData("people");
+  });
+  
+  vehiclesBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    displayData("vehicles");
+  });
+  
+  planetsBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    displayData("planets");
+  });
+  
+  speciesBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    displayData("species");
+  });
+  
 });
