@@ -48,14 +48,15 @@ main {
 h4{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-/* Keyframes for border animation */
+/* Keyframes for border animation; a keyframe animation named borderAnimation is defined using the @keyframes rule.
+ This animation will change the border-color property of an element over time. */
 @keyframes borderAnimation {
     0% { border-color: red; }
     50% { border-color: rgb(171, 202, 187); }
     100% { border-color: red; }
 }
 
-/* Apply animation to the card */
+/* Applies animation to the card */
 .card {
     border: 3px solid red;
     height: fit-content;
@@ -66,7 +67,7 @@ h4{
     opacity: .8;
     padding: 10px;
 
-    /* Apply animation properties */
+    /* Applies animation properties */
     animation: borderAnimation 3s infinite;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
