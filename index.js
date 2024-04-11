@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     if (searchQuery) {
-      swapiBaseUrl += `?search=${searchQuery}`;//if a there is a search query , (the base URL + the search query)URL will run
+      swapiBaseUrl += `?search=${searchQuery}`;//if a there is a search query , (the base URL + the search query)URL will run. 
+      // The search will happen when the seaerch button is clicked.
     }
 
     return fetch(swapiBaseUrl)
