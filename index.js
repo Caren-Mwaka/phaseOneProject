@@ -36,8 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
 //If a search query has been inputted it will look through that specific category for that particular item.
       .then((data) => {
         if (data && Array.isArray(data.results)) {
-          // Check if data.results is defined
+          // Check if data.results is defined, that is if checks if the data variable is truthy(!(null, undefined, 0, '' (empty string), NaN, and false)).
+          // If data is truthy, it means that the fetchData function successfully fetched some data from the API.
+          // Array.isArray() checks if data.results is an array.
           data.results.forEach((item) => {
+            
             //displaying films data
             switch (category) {
               case "films":
