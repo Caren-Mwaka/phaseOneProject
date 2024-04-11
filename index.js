@@ -141,22 +141,22 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   filmsBtn.addEventListener("click", (event) => {
-
+    event.preventDefault();
     displayData("films");
   });
 
   peopleBtn.addEventListener("click", (event) => {
-    
+    event.preventDefault();
     displayData("people");
   });
 
   vehiclesBtn.addEventListener("click", (event) => {
-   
+    event.preventDefault();
     displayData("vehicles");
   });
 
   planetsBtn.addEventListener("click", (event) => {
-    
+    event.preventDefault();
     displayData("planets");
   });
 
