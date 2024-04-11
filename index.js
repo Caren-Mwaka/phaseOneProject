@@ -194,5 +194,17 @@ navigation.forEach((button) => {
     
     // Add active class to the clicked button
     event.target.classList.add("active");
+    const searchInput = document.getElementById("searchInput");
 
+    switch (event.target.id.replace("Btn", "")) {
+      case "films":
+        searchInput.placeholder = "Search Films...";
+        break;
+      
+    }
+    
+    // Display data for the clicked category
+    displayData(event.target.id.replace("Btn", ""));
+  });
+});
 })
