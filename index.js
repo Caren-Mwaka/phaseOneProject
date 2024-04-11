@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
           mainContent.insertAdjacentHTML("afterbegin", content);
         } else {
           throw new Error(
-            `Data structure is not as expected for category: ${category}, query: ${searchQuery}`
+            `Failed to fetch ${category} data or no results found for "${searchQuery}". Please try again.`
           );
         }
       })
