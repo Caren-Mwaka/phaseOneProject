@@ -54,7 +54,43 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>`;
                 break;
-             
+                     //displaying people data
+              case "people":
+                content += `
+                    <div class="card">
+                        <h4>${item.name}</h4>
+                        <div class="card-content">  
+                            <span class="height">Height</span>: ${item.height}<br>
+                            <span class="mass">Mass</span>: ${item.mass}<br>
+                            <span class="hairColor">Hair Color</span>: ${item.hair_color}<br>
+                            <span class="skinColor">Skin Color</span>: ${item.skin_color}<br>
+                            <span class="eyeColor">Eye Color</span>: ${item.eye_color}<br>
+                            <span class="birthYear">Birth Year</span>: ${item.birth_year}<br>
+                            <span class="gender">Gender</span>: ${item.gender}<br>
+                        </div>
+                    </div>`;
+                break;
+              //displaying vehicles data
+              case "vehicles":
+                content += `
+                        <div class="card">
+                            <h4>${item.name}</h4>
+                            <div class="card-content">  
+                            <span class="model">Model</span>: ${item.model}<br>
+                            <span class="manufacturer">Manufacturer</span>: ${item.manufacturer}<br>
+                            <span class="costInCredits">Cost in Credits</span>: ${item.cost_in_credits}<br>
+                            <span class="length">Length</span>: ${item.length}<br>
+                            <span class="maxAtmospheringSpeed">Max Atmosphering Speed</span>: ${item.max_atmosphering_speed}<br>
+                            <span class="crew">Crew</span>: ${item.crew}<br>
+                            <span class="passengers">Passengers</span>: ${item.passengers}<br>
+                            <span class="cargoCapacity">Cargo Capacity</span>: ${item.cargo_capacity}<br>
+                            <span class="consumables">Consumables</span>: ${item.consumables}<br>
+                            <span class="vehicleClass">Vehicle Class</span>: ${item.vehicle_class}<br>
+                            </div>
+                        </div>`;
+                break;
+              
+
              
 
               default:
