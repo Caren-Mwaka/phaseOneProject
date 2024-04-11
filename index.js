@@ -179,5 +179,10 @@ document.addEventListener("DOMContentLoaded", () => {
      const searchQuery = document.getElementById("searchInput").value;
      const activeButton = document.querySelector("nav button.active");
  
+if (activeButton) {
+  const selectedCategory = activeButton.id.replace("Btn", "");
+  displayData(selectedCategory, searchQuery);
+}
+
 })
 })
