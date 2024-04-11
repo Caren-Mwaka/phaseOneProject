@@ -183,6 +183,16 @@ if (activeButton) {
   const selectedCategory = activeButton.id.replace("Btn", "");
   displayData(selectedCategory, searchQuery);
 }
-
 })
+// Event listener for category buttons
+const navigation = document.querySelectorAll("nav button");
+
+navigation.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    // Remove active class from all buttons
+    navigation.forEach((btn) => btn.classList.remove("active"));
+    
+    // Add active class to the clicked button
+    event.target.classList.add("active");
+
 })
