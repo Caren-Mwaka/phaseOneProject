@@ -89,10 +89,40 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>
                         </div>`;
                 break;
-              
-
-             
-
+              //displaying planets data
+              case "planets":
+                content += `
+                        <div class="card">
+                            <h4>${item.name}</h4>
+                            <div class="card-content">  
+                            <span class="rotationPeriod">Rotation Period</span>: ${item.rotation_period}<br>
+                            <span class="orbitalPeriod">Orbital Period</span>: ${item.orbital_period}<br>
+                            <span class="diameter">Diameter</span>: ${item.diameter}<br>
+                            <span class="climate">Climate</span>: ${item.climate}<br>
+                            <span class="gravity">Gravity</span>: ${item.gravity}<br>
+                            <span class="terrain">Terrain</span>: ${item.terrain}<br>
+                            <span class="surfaceWater">Surface Water</span>: ${item.surface_water}<br>
+                            <span class="population">Population</span>: ${item.population}<br>
+                            </div>
+                        </div>`;
+                break;
+              //displaying species data
+              case "species":
+                content += `
+                        <div class="card">
+                            <h4>${item.name}</h4>
+                            <div class="card-content">  
+                            <span class="classification">Classification</span>: ${item.classification}<br>
+                            <span class="designation">Designation</span>: ${item.designation}<br>
+                            <span class="averageHeight">Average Height</span>: ${item.average_height}<br>
+                            <span class="skinColors">Skin Colors</span>: ${item.skin_colors}<br>
+                            <span class="hairColors">Hair Colors</span>: ${item.hair_colors}<br>
+                            <span class="eyeColors">Eye Colors</span>: ${item.eye_colors}<br>
+                            <span class="averageLifespan">Average Lifespan</span>: ${item.average_lifespan}<br>
+                            <span class="language">Language</span>: ${item.language}<br>
+                            </div>
+                        </div>`;
+                break;
               default:
                 break;
             }
