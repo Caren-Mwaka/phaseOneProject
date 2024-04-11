@@ -7,14 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainContent = document.getElementById("mainContent");
 
   function fetchData(category, searchQuery = "") {
-    let swapiUrl = `https://swapi.dev/api/${category}/`;//This is the star wars base URL where the category, for example films, has been interpolated.
+    let swapiBaseUrl = `https://swapi.dev/api/${category}/`;//This is the star wars base URL where the category, for example films, has been interpolated.
 
 
     if (searchQuery) {
-      swapiUrl += `?search=${searchQuery}`;//if a there is a search query , (the base URL + the search query)URL will run
+      swapiBaseUrl += `?search=${searchQuery}`;//if a there is a search query , (the base URL + the search query)URL will run
     }
 
-    return fetch(swapiUrl)
+    return fetch(swapiBaseUrl)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to load details");
@@ -141,22 +141,22 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   filmsBtn.addEventListener("click", (event) => {
-    event.preventDefault();
+
     displayData("films");
   });
 
   peopleBtn.addEventListener("click", (event) => {
-    event.preventDefault();
+    
     displayData("people");
   });
 
   vehiclesBtn.addEventListener("click", (event) => {
-    event.preventDefault();
+   
     displayData("vehicles");
   });
 
   planetsBtn.addEventListener("click", (event) => {
-    event.preventDefault();
+    
     displayData("planets");
   });
 
