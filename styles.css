@@ -26,10 +26,17 @@ nav button {
     cursor: pointer;
 
 }
+
+ nav button.active { /*colour indicates the active button */
+    background-color: #333;
+    color: #fff;
+  }
+
 nav button:hover {
     
 background-color: rgb(195, 230, 222);
 }
+
 
 main {
     max-width: 800px;
@@ -74,9 +81,9 @@ h4{
 
 /* Hover styles for the card */
 .card:hover {
-    background-color: rgb(171, 202, 187); /* Light gray background color on hover */
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3); /* Enhanced box shadow on hover */
-    transform: translateY(-5px); /* Move the card up slightly on hover */
+    background-color: rgb(171, 202, 187); /* background color on hover */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3); /* box shadow on hover */
+    transform: translateY(-5px); /* Moves the card up slightly on hover */
     opacity: 0.8;
 }
 
