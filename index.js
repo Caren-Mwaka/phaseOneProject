@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
           data.results.forEach((item) => {
             //forEach loop iterates over the data and generates the necessary HTML content for each item in the data.results array, 
             //the data generated will then be inserted into the mainContent element to display the fetched data on the webpage.
+
             //displaying films data
             switch (category) {
               case "films":
@@ -169,4 +170,13 @@ document.addEventListener("DOMContentLoaded", () => {
     displayData("species");
   });
 
+ // Event listener for search button
+ const search = document.getElementById("searchBtn");
+ //fetching the button element with the ID "searchBtn" . This is the button that triggers the search.
+   search.addEventListener("click", (event) => {
+     event.preventDefault();
+     const searchQuery = document.getElementById("searchInput").value;
+     const activeButton = document.querySelector("nav button.active");
+ 
+})
 })
