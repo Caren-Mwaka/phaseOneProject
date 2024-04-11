@@ -195,12 +195,26 @@ navigation.forEach((button) => {
     // Add active class to the clicked button
     event.target.classList.add("active");
     const searchInput = document.getElementById("searchInput");
-
+    
     switch (event.target.id.replace("Btn", "")) {
       case "films":
         searchInput.placeholder = "Search Films...";
         break;
-      
+      case "people":
+        searchInput.placeholder = "Search People...";
+        break;
+      case "vehicles":
+        searchInput.placeholder = "Search Vehicles...";
+        break;
+      case "planets":
+        searchInput.placeholder = "Search Planets...";
+        break;
+      case "species":
+        searchInput.placeholder = "Search Species...";
+        break;
+      default:
+        searchInput.placeholder = "Search...";
+        break;
     }
     
     // Display data for the clicked category
