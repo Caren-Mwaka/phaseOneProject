@@ -40,7 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
           // If data is truthy, it means that the fetchData function successfully fetched some data from the API.
           // Array.isArray() checks if data.results is an array.
           data.results.forEach((item) => {
-            
+            //forEach loop iterates over the data and generates the necessary HTML content for each item in the data.results array, 
+            //the data generated will then be inserted into the mainContent element to display the fetched data on the webpage.
             //displaying films data
             switch (category) {
               case "films":
