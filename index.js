@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const speciesBtn = document.getElementById("speciesBtn");
   const mainContent = document.getElementById("mainContent");
 
-//FETCHING DATA:
+// FETCHING THE DATA:
   function fetchData(category, searchQuery = "") {
     let swapiBaseUrl = `https://swapi.dev/api/${category}/`; //This is the star wars base URL where the category, for example films, has been interpolated.
 
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-//DISPLAYING DATA:
+// DISPLAYING THE DATA
   const displayData = (category, searchQuery = "") => {
     let content = "";
     mainContent.innerHTML = "";
@@ -135,6 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
           });
 
           mainContent.insertAdjacentHTML("afterbegin", content);
+          // The insertAdjacentHTML() method inserts HTML code into a specified position.
+          // afterbegin	positions the html content after the beginning of the element (first child).In this case though there is nothing within mainContent.
         } else {
           throw new Error(
             `Failed to fetch ${category} data or no results found for "${searchQuery}". Please try again.`
@@ -172,46 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     displayData("species");
   });
-
-  //CATEGORY NAVIGATION:
-  // Event listener for category buttons
-  const navigation = document.querySelectorAll("nav button");
-
-  navigation.forEach((button) => {
-    button.addEventListener("click", (event) => {
-
-      event.preventDefault()
-      // Removing active class from all buttons
-      navigation.forEach((btn) => btn.classList.remove("active"));
-
-      // Adding active class to the clicked button
-      event.target.classList.add("active");
-
-//updating the search input placeholder to match the category that is clicked
-      switch (event.target.id.replace("Btn", "")) {
-        case "films":
-          searchInput.placeholder = "Search Films...";
-          break;
-        case "people":
-          searchInput.placeholder = "Search People...";
-          break;
-        case "vehicles":
-          searchInput.placeholder = "Search Vehicles...";
-          break;
-        case "planets":
-          searchInput.placeholder = "Search Planets...";
-          break;
-        case "species":
-          searchInput.placeholder = "Search Species...";
-          break;
-        default:
-          searchInput.placeholder = "Search...";
-          break;
-      }
-  // Displays data for the clicked category
-  displayData(event.target.id.replace("Btn", ""));
-});
-
 
   //SEARCH FUNCTIONALTY:
   // Reference to the search input and the message element and card class
@@ -272,6 +234,58 @@ document.addEventListener("DOMContentLoaded", () => {
     //calling the displayData function with both the category and the search query as arguments, allows for a more refined search based on these two arguments.
   });
 
+  // Additional event listener for the search button that allows a user to press the enter key to trigger the search.
+  searchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault(); 
+      const searchQuery = searchInput.value;
+      const activeButton = document.querySelector("nav button.active");
+
+      if (activeButton) {
+        const selectedCategory = activeButton.id.replace("Btn", "");
+        displayData(selectedCategory, searchQuery);
+      }
+    }
+  });
+
+//CATEGORY NAVIGATION:
+  // Event listener for category buttons
+  const navigation = document.querySelectorAll("nav button");
+
+  navigation.forEach((button) => {
+    button.addEventListener("click", (event) => {
+
+      event.preventDefault()
+      // Removing active class from all buttons
+      navigation.forEach((btn) => btn.classList.remove("active"));
+
+      // Adding active class to the clicked button
+      event.target.classList.add("active");
+
+//updating the search input placeholder to match the category that is clicked
+      switch (event.target.id.replace("Btn", "")) {
+        case "films":
+          searchInput.placeholder = "Search Films...";
+          break;
+        case "people":
+          searchInput.placeholder = "Search People...";
+          break;
+        case "vehicles":
+          searchInput.placeholder = "Search Vehicles...";
+          break;
+        case "planets":
+          searchInput.placeholder = "Search Planets...";
+          break;
+        case "species":
+          searchInput.placeholder = "Search Species...";
+          break;
+        default:
+          searchInput.placeholder = "Search...";
+          break;
+      }
+  // Displays data for the clicked category
+  displayData(event.target.id.replace("Btn", ""));
+});
 
 //BACK BUTTON FUNCTIONALITY:
       const backButton = document.getElementById("backButton");
