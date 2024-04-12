@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const speciesBtn = document.getElementById("speciesBtn");
   const mainContent = document.getElementById("mainContent");
 
+//FETCHING DATA:
   function fetchData(category, searchQuery = "") {
     let swapiBaseUrl = `https://swapi.dev/api/${category}/`; //This is the star wars base URL where the category, for example films, has been interpolated.
 
@@ -26,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
+//DISPLAYING DATA:
   const displayData = (category, searchQuery = "") => {
     let content = "";
     mainContent.innerHTML = "";
@@ -144,8 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   };
 
+  //adding event listeners to all the buttons, so that when the button is clicked data within a specific category is displayed.
   filmsBtn.addEventListener("click", (event) => {
     event.preventDefault();
+    //prevents the default behavior of the button, which might be submitting a form (reloading the page).
     displayData("films");
   });
 
@@ -169,65 +173,21 @@ document.addEventListener("DOMContentLoaded", () => {
     displayData("species");
   });
 
-  const searchInput = document.getElementById("searchInput");
-  const cards = document.querySelectorAll(".card");
-
-  // Reference to the search input and the message element
-  const searchMessage = document.getElementById("searchMessage");
-
-  // Event listener for the focus event on the search input
-  searchInput.addEventListener("focus", () => {
-    searchMessage.style.display = "block"; // Display the search message
-
-  // Hide the search message after 3 seconds (3000 milliseconds)
-    setTimeout(() => {
-      searchMessage.style.display = "none";
-    }, 3000);
-  });
-
-  searchInput.addEventListener("input", () => {
-    const query = searchInput.value.toLowerCase().trim();//case-insensitive and whitespace-trimmed search.
-
-    let hasResults = false; // Flag to track if any results are found
-
-    cards.forEach((card) => {
-      const cardTitle = card.querySelector("h4").textContent.toLowerCase();
-
-      if (cardTitle.includes(query)) {
-        card.style.display = "block";
-        hasResults = true;
-      } else {
-        card.style.display = "none";
-      }
-    });
-  });
-  
-
-  // Event listener for search button
-  const search = document.getElementById("searchBtn");
-  //fetching the button element with the ID "searchBtn" . This is the button that triggers the search.
-  search.addEventListener("click", (event) => {
-    event.preventDefault();
-    const searchQuery = document.getElementById("searchInput").value;
-    const activeButton = document.querySelector("nav button.active");
-
-    if (activeButton) {
-      const selectedCategory = activeButton.id.replace("Btn", "");
-      displayData(selectedCategory, searchQuery);
-    }
-  });
+  //CATEGORY NAVIGATION:
   // Event listener for category buttons
   const navigation = document.querySelectorAll("nav button");
 
   navigation.forEach((button) => {
     button.addEventListener("click", (event) => {
+
+      event.preventDefault()
       // Removing active class from all buttons
       navigation.forEach((btn) => btn.classList.remove("active"));
 
-      // Add active class to the clicked button
+      // Adding active class to the clicked button
       event.target.classList.add("active");
-      const searchInput = document.getElementById("searchInput");
 
+//updating the search input placeholder to match the category that is clicked
       switch (event.target.id.replace("Btn", "")) {
         case "films":
           searchInput.placeholder = "Search Films...";
@@ -248,16 +208,78 @@ document.addEventListener("DOMContentLoaded", () => {
           searchInput.placeholder = "Search...";
           break;
       }
+  // Displays data for the clicked category
+  displayData(event.target.id.replace("Btn", ""));
+});
 
-      // Back Button Functionality
+
+  //SEARCH FUNCTIONALTY:
+  // Reference to the search input and the message element and card class
+  const searchInput = document.getElementById("searchInput");
+  const cards = document.querySelectorAll(".card");
+  const searchMessage = document.getElementById("searchMessage");
+
+  // Adding an event listener for the focus event on the search input
+  searchInput.addEventListener("focus", () => {
+
+  // Displays the search message  
+    searchMessage.style.display = "block"; 
+
+  // Hides the search message after 3 seconds (3000 milliseconds)
+    setTimeout(() => {
+      searchMessage.style.display = "none";
+    }, 3000);
+  });
+
+ // Setting up an event listener for the search input. 
+ // Whenever the user types something in the search bar (which triggers the "input" event), the code inside the curly braces ({}) gets executed.
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase().trim();
+    //converts teh search input to lowercase for case-insensitive search, and removes any leading or trailing spaces (using .trim()).
+
+    let hasResults = false;
+    // Flag to track if any results are found. The value of the variable hasResults is false until it finds a result.
+
+    cards.forEach((card) => {
+      const cardTitle = card.querySelector("h4").textContent.toLowerCase();
+    //looping through the card elements to find the element with the tag <h4> inside each card,
+    //then gets its text content, and converts it to lowercase for case-insensitive matching.
+      if (cardTitle.includes(query)) {
+        card.style.display = "block";
+        hasResults = true;
+      } else {
+        card.style.display = "none";
+      }
+      //After the loop finishes going through all cards, if hasResults is still false, it means no cards matched the search query and hence none will display.
+      // if any cards match the search query they will be displayed.
+    });
+  });
+  
+
+  // Event listener for search button
+  const search = document.getElementById("searchBtn");
+  //fetching the button element with the ID "searchBtn" . This is the button that triggers the search.
+  search.addEventListener("click", (event) => {
+    event.preventDefault();
+    const searchQuery = document.getElementById("searchInput").value;
+    const activeButton = document.querySelector("nav button.active");
+    //finds a button within the <nav> element that has the class "active". The active button is the currently selected category button.
+
+    if (activeButton) {
+      const selectedCategory = activeButton.id.replace("Btn", "");
+      displayData(selectedCategory, searchQuery);
+    }
+    //calling the displayData function with both the category and the search query as arguments, allows for a more refined search based on these two arguments.
+  });
+
+
+//BACK BUTTON FUNCTIONALITY:
       const backButton = document.getElementById("backButton");
 
       backButton.addEventListener("click", () => {
         window.location.href = "index.html"; // Navigate to the homepage
       });
 
-      // Display data for the clicked category
-      displayData(event.target.id.replace("Btn", ""));
-    });
+    
   });
 });
