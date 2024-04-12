@@ -1,147 +1,150 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    background-image: url('background.jpg') ;
-    background-size:  cover;
-    background-position: center ;
-    background-repeat:  no-repeat;
-    background-attachment: fixed;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-h1{
-padding-left: 100px;
+h1 {
+  padding-left: 100px;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 nav button {
-    margin-right: 50px;
-    cursor: pointer;
-
+  margin-right: 50px;
+  cursor: pointer;
 }
 
- nav button.active { /*colour indicates the active button */
-    background-color: #333;
-    color: #fff;
-  }
+nav button.active {
+  /*colour indicates the active button */
+  background-color: #333;
+  color: #fff;
+}
 
 nav button:hover {
-    
-background-color: rgb(195, 230, 222);
+  background-color: rgb(195, 230, 222);
 }
-
 
 main {
-    max-width: 800px;
-    margin: 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
 }
 #mainContent {
-    max-width: 1200px;
-    height: 100%;
-    display: grid;
-    margin: 0 auto;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    place-items: center;
-    font-size: 0.9em;
+  max-width: 1200px;
+  height: 100%;
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  place-items: center;
+  font-size: 0.9em;
 }
-h4{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+h4 {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 /* Keyframes for border animation; a keyframe animation named borderAnimation is defined using the @keyframes rule.
  This animation will change the border-color property of an element over time. */
 @keyframes borderAnimation {
-    0% { border-color: red; }
-    50% { border-color: rgb(171, 202, 187); }
-    100% { border-color: red; }
+  0% {
+    border-color: red;
+  }
+  50% {
+    border-color: rgb(171, 202, 187);
+  }
+  100% {
+    border-color: red;
+  }
 }
 
 /* Applies animation to the card */
 .card {
-    border: 3px solid red;
-    height: fit-content;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px;
-    background-color: azure;
-    width: 400px;
-    opacity: .8;
-    padding: 10px;
+  border: 3px solid red;
+  height: fit-content;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px;
+  background-color: azure;
+  width: 400px;
+  opacity: 0.8;
+  padding: 10px;
 
-    /* Applies animation properties */
-    animation: borderAnimation 3s infinite;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  /* Applies animation properties */
+  animation: borderAnimation 3s infinite;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 /* Hover styles for the card */
 .card:hover {
-    background-color: rgb(171, 202, 187); /* background color on hover */
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3); /* box shadow on hover */
-    transform: translateY(-5px); /* Moves the card up slightly on hover */
-    opacity: 0.8;
+  background-color: rgb(171, 202, 187); /* background color on hover */
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3); /* box shadow on hover */
+  transform: translateY(-5px); /* Moves the card up slightly on hover */
+  opacity: 0.8;
 }
-
 
 /* Additional styles for card content */
 .card .card-content {
-    width: 100%;
-    height: 300px;
-    border-radius: 15px;
-    object-fit: contain;
-    background-image: linear-gradient(0deg, #6c976c,transparent);
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  object-fit: contain;
+  background-image: linear-gradient(0deg, #6c976c, transparent);
 }
 
 .card .card-content .producer {
-    font-size: 15px;
-    text-align: left;
+  font-size: 15px;
+  text-align: left;
 }
 
 .card .card-content .opening_crawl {
-    position: absolute;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    height: 150px;
-    overflow: hidden;
-}
-  
-#searchMessage{
-    display: none;
-    margin-left: 50%;
-  }
-/* Back Button Styles */
-#backButton {
-    background-color:rgb(10, 5, 5); 
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.2em;
-    text-transform: uppercase;
-    color: white;
-    letter-spacing: 1px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-    outline: none;
-    margin-left: 100px;
-    margin-bottom: 20px;
-  }
-  
-  #backButton:hover {
-    background-color: rgb(195, 230, 222); 
-    transform: translateY(-2px);
-}
-  
-  #backButton:active {
-    background-color: #3e8e41; 
-    transform: translateY(0); 
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+  position: absolute;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  height: 150px;
+  overflow: hidden;
 }
 
+#searchMessage {
+  display: none;
+  margin-left: 50%;
+}
+/* Back Button Styles */
+#backButton {
+  background-color: rgb(10, 5, 5);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 1px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  outline: none;
+  margin-left: 100px;
+  margin-bottom: 20px;
+}
+
+#backButton:hover {
+  background-color: rgb(195, 230, 222);
+  transform: translateY(-2px);
+}
+
+#backButton:active {
+  background-color: #3e8e41;
+  transform: translateY(0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}

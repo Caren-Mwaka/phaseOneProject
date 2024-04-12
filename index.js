@@ -1,4 +1,8 @@
+// Initial Load
+// ensures that my JavaScript runs after the HTML document has been completely loaded.
 document.addEventListener("DOMContentLoaded", () => {
+  
+  // My DOM Elements - selecting various DOM elements using getElementById() method and storing them in variables.
   const filmsBtn = document.getElementById("filmsBtn");
   const peopleBtn = document.getElementById("peopleBtn");
   const vehiclesBtn = document.getElementById("vehiclesBtn");
