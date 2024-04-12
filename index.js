@@ -17,14 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return fetch(swapiBaseUrl)
       .then((response) => {
         if (!response.ok) {
-          rd;
           throw new Error("Failed to load details");
         }
         return response.json();
       })
       .catch((error) => {
         console.error("Error:", error);
-        throw error;
       });
   }
 
@@ -179,16 +177,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Event listener for the focus event on the search input
   searchInput.addEventListener("focus", () => {
-  searchMessage.style.display = "block"; // Display the search message
+    searchMessage.style.display = "block"; // Display the search message
 
-    // Hide the search message after 3 seconds (3000 milliseconds)
+  // Hide the search message after 3 seconds (3000 milliseconds)
     setTimeout(() => {
       searchMessage.style.display = "none";
     }, 3000);
   });
 
   searchInput.addEventListener("input", () => {
-    const query = searchInput.value.toLowerCase();
+    const query = searchInput.value.toLowerCase().trim();//case-insensitive and whitespace-trimmed search.
+
     let hasResults = false; // Flag to track if any results are found
 
     cards.forEach((card) => {
@@ -201,20 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.display = "none";
       }
     });
-
-    // Display the custom popup if no results are found
-    const noResultsPopup = document.getElementById("noResultsPopup");
-    if (!hasResults && query) {
-      noResultsPopup.style.display = "block";
-
-      // Hide the popup after 3 seconds (3000 milliseconds)
-      setTimeout(() => {
-        noResultsPopup.style.display = "none";
-      }, 3000);
-    } else {
-      noResultsPopup.style.display = "none";
-    }
   });
+  
 
   // Event listener for search button
   const search = document.getElementById("searchBtn");
@@ -234,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   navigation.forEach((button) => {
     button.addEventListener("click", (event) => {
-      // Remove active class from all buttons
+      // Removing active class from all buttons
       navigation.forEach((btn) => btn.classList.remove("active"));
 
       // Add active class to the clicked button
@@ -261,16 +248,16 @@ document.addEventListener("DOMContentLoaded", () => {
           searchInput.placeholder = "Search...";
           break;
       }
-  
-// Back Button Functionality
-const backButton = document.getElementById("backButton");
 
-backButton.addEventListener("click", () => {
-  window.location.href = "index.html"; // Navigate to the homepage
-});
+      // Back Button Functionality
+      const backButton = document.getElementById("backButton");
 
-// Display data for the clicked category
-displayData(event.target.id.replace("Btn", ""));
-});
+      backButton.addEventListener("click", () => {
+        window.location.href = "index.html"; // Navigate to the homepage
+      });
+
+      // Display data for the clicked category
+      displayData(event.target.id.replace("Btn", ""));
+    });
   });
 });

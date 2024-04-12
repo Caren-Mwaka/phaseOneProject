@@ -111,21 +111,8 @@ h4{
     height: 150px;
     overflow: hidden;
 }
-.popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
   
-  #searchMessage{
+#searchMessage{
     display: none;
     margin-left: 50%;
   }
@@ -144,6 +131,7 @@ h4{
     transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
     outline: none;
     margin-left: 100px;
+    margin-bottom: 20px;
   }
   
   #backButton:hover {
@@ -156,4 +144,4 @@ h4{
     transform: translateY(0); 
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
 }
-  
+

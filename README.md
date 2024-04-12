@@ -16,6 +16,7 @@ Dynamic Content Display: Displays the fetched category data on the webpage based
 HTML
 CSS
 JavaScript
+GitHub
 Star Wars API
 
 # How to use

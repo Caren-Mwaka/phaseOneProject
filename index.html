@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Star Wars Universe Explorer</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body class="starwars">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="starwars">
     <header>
-        <h1 ><img class="swe" src="pageName.png" alt=""></h1>
-        <nav >
-            <button id="filmsBtn">Films</button>
-            <button id="peopleBtn">People</button>
-            <button id="vehiclesBtn">Vehicles</button>
-            <button id="planetsBtn">Planets</button>
-            <button id="speciesBtn">Species</button>
+      <h1><img class="swe" src="pageName.png" alt="" /></h1>
+      <nav>
+        <button id="filmsBtn">Films</button>
+        <button id="peopleBtn">People</button>
+        <button id="vehiclesBtn">Vehicles</button>
+        <button id="planetsBtn">Planets</button>
+        <button id="speciesBtn">Species</button>
 
-            <input type="text" id="searchInput" placeholder="Search...">
-            <button id="searchBtn">Search</button>
-        </nav>
+        <input type="text" id="searchInput" placeholder="Search..." />
+        <button id="searchBtn">Search</button>
+      </nav>
     </header>
     <button id="backButton">Back</button>
-    <div id="noResultsPopup" class="popup">
-        <p>No results found for the search query.</p>
-      </div>
-      <p id="searchMessage" >Explore the Universe...</p>
-
+    
+    <p id="searchMessage">Explore the Universe...</p>
 
     <main id="mainContent">
-        <!-- loading content -->
+      <!-- area for loading content from index.js-->
     </main>
 
     <script src="index.js"></script>
-</body>
+  </body>
 </html>
