@@ -7,17 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainContent = document.getElementById("mainContent");
 
   function fetchData(category, searchQuery = "") {
-    let swapiBaseUrl = `https://swapi.dev/api/${category}/`;//This is the star wars base URL where the category, for example films, has been interpolated.
-
+    let swapiBaseUrl = `https://swapi.dev/api/${category}/`; //This is the star wars base URL where the category, for example films, has been interpolated.
 
     if (searchQuery) {
-      swapiBaseUrl += `?search=${searchQuery}`;//if a there is a search query , (the base URL + the search query)URL will run. 
+      swapiBaseUrl += `?search=${searchQuery}`; //if a there is a search query , (the base URL + the search query)URL will run.
       // The search will happen when the seaerch button is clicked.
     }
 
     return fetch(swapiBaseUrl)
       .then((response) => {
         if (!response.ok) {
+          rd;
           throw new Error("Failed to load details");
         }
         return response.json();
@@ -32,16 +32,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let content = "";
     mainContent.innerHTML = "";
     fetchData(category, searchQuery)
-//The fetchData is called inside the displayData function to fetch the data and then display it based on the value.
-//For example if the value === films , the data that will be displayed will be that of case 'films'.
-//If a search query has been inputted it will look through that specific category for that particular item.
+      //The fetchData is called inside the displayData function to fetch the data and then display it based on the value.
+      //For example if the value === films , the data that will be displayed will be that of case 'films'.
+      //If a search query has been inputted it will look through that specific category for that particular item.
       .then((data) => {
         if (data && Array.isArray(data.results)) {
           // Check if data.results is defined, that is if checks if the data variable is truthy(!(null, undefined, 0, '' (empty string), NaN, and false)).
           // If data is truthy, it means that the fetchData function successfully fetched some data from the API.
           // Array.isArray() checks if data.results is an array.
           data.results.forEach((item) => {
-            //forEach loop iterates over the data and generates the necessary HTML content for each item in the data.results array, 
+            //forEach loop iterates over the data and generates the necessary HTML content for each item in the data.results array,
             //the data generated will then be inserted into the mainContent element to display the fetched data on the webpage.
 
             //displaying films data
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>`;
                 break;
-                     //displaying people data
+              //displaying people data
               case "people":
                 content += `
                     <div class="card">
@@ -171,54 +171,106 @@ document.addEventListener("DOMContentLoaded", () => {
     displayData("species");
   });
 
- // Event listener for search button
- const search = document.getElementById("searchBtn");
- //fetching the button element with the ID "searchBtn" . This is the button that triggers the search.
-   search.addEventListener("click", (event) => {
-     event.preventDefault();
-     const searchQuery = document.getElementById("searchInput").value;
-     const activeButton = document.querySelector("nav button.active");
- 
-if (activeButton) {
-  const selectedCategory = activeButton.id.replace("Btn", "");
-  displayData(selectedCategory, searchQuery);
-}
-})
-// Event listener for category buttons
-const navigation = document.querySelectorAll("nav button");
+  const searchInput = document.getElementById("searchInput");
+  const cards = document.querySelectorAll(".card");
 
-navigation.forEach((button) => {
-  button.addEventListener("click", (event) => {
-    // Remove active class from all buttons
-    navigation.forEach((btn) => btn.classList.remove("active"));
-    
-    // Add active class to the clicked button
-    event.target.classList.add("active");
-    const searchInput = document.getElementById("searchInput");
-    
-    switch (event.target.id.replace("Btn", "")) {
-      case "films":
-        searchInput.placeholder = "Search Films...";
-        break;
-      case "people":
-        searchInput.placeholder = "Search People...";
-        break;
-      case "vehicles":
-        searchInput.placeholder = "Search Vehicles...";
-        break;
-      case "planets":
-        searchInput.placeholder = "Search Planets...";
-        break;
-      case "species":
-        searchInput.placeholder = "Search Species...";
-        break;
-      default:
-        searchInput.placeholder = "Search...";
-        break;
+  // Reference to the search input and the message element
+  const searchMessage = document.getElementById("searchMessage");
+
+  // Event listener for the focus event on the search input
+  searchInput.addEventListener("focus", () => {
+  searchMessage.style.display = "block"; // Display the search message
+
+    // Hide the search message after 3 seconds (3000 milliseconds)
+    setTimeout(() => {
+      searchMessage.style.display = "none";
+    }, 3000);
+  });
+
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    let hasResults = false; // Flag to track if any results are found
+
+    cards.forEach((card) => {
+      const cardTitle = card.querySelector("h4").textContent.toLowerCase();
+
+      if (cardTitle.includes(query)) {
+        card.style.display = "block";
+        hasResults = true;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    // Display the custom popup if no results are found
+    const noResultsPopup = document.getElementById("noResultsPopup");
+    if (!hasResults && query) {
+      noResultsPopup.style.display = "block";
+
+      // Hide the popup after 3 seconds (3000 milliseconds)
+      setTimeout(() => {
+        noResultsPopup.style.display = "none";
+      }, 3000);
+    } else {
+      noResultsPopup.style.display = "none";
     }
-    
-    // Display data for the clicked category
-    displayData(event.target.id.replace("Btn", ""));
+  });
+
+  // Event listener for search button
+  const search = document.getElementById("searchBtn");
+  //fetching the button element with the ID "searchBtn" . This is the button that triggers the search.
+  search.addEventListener("click", (event) => {
+    event.preventDefault();
+    const searchQuery = document.getElementById("searchInput").value;
+    const activeButton = document.querySelector("nav button.active");
+
+    if (activeButton) {
+      const selectedCategory = activeButton.id.replace("Btn", "");
+      displayData(selectedCategory, searchQuery);
+    }
+  });
+  // Event listener for category buttons
+  const navigation = document.querySelectorAll("nav button");
+
+  navigation.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      // Remove active class from all buttons
+      navigation.forEach((btn) => btn.classList.remove("active"));
+
+      // Add active class to the clicked button
+      event.target.classList.add("active");
+      const searchInput = document.getElementById("searchInput");
+
+      switch (event.target.id.replace("Btn", "")) {
+        case "films":
+          searchInput.placeholder = "Search Films...";
+          break;
+        case "people":
+          searchInput.placeholder = "Search People...";
+          break;
+        case "vehicles":
+          searchInput.placeholder = "Search Vehicles...";
+          break;
+        case "planets":
+          searchInput.placeholder = "Search Planets...";
+          break;
+        case "species":
+          searchInput.placeholder = "Search Species...";
+          break;
+        default:
+          searchInput.placeholder = "Search...";
+          break;
+      }
+  
+// Back Button Functionality
+const backButton = document.getElementById("backButton");
+
+backButton.addEventListener("click", () => {
+  window.location.href = "index.html"; // Navigate to the homepage
+});
+
+// Display data for the clicked category
+displayData(event.target.id.replace("Btn", ""));
+});
   });
 });
-})
