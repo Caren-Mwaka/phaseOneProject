@@ -54,11 +54,10 @@ Git
 
 ### Installation instruction
 ```
-Git clone https://github.com/Caren-Mwaka/code-challenge-3.git
-
+Git clone https://github.com/Caren-Mwaka/phaseOneProject.git
 ```
 # Live Link
-[Git](https://caren-mwaka.github.io/code-challenge-3/)
+[Git](https://caren-mwaka.github.io/phaseOneProject/)
 
 ## Support and contact details
 github.com/Caren-Mwaka
